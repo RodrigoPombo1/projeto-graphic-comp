@@ -1,10 +1,10 @@
 # CG 2024/2025
 
-## Group T0xG0y
+## Group T05G05
 | Name             | Number    | E-Mail             |
 | ---------------- | --------- | ------------------ |
-| John Doe         | 201901010 | ...                |
-| Jane Doe         | 201901011 | ...                |
+| Rodrigo Pinto Pesqueira Gaspar Pombo | 202105374 | up202105374@up.pt |
+| Pedro Jorge das Neves Pinto Vieira | 202206230 | up202206230@up.pt |
 
 ----
 
