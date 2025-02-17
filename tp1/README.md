@@ -1,12 +1,15 @@
 # CG 2024/2025
 
-## Group T0xG0y
+## Group T05G05
 
 ## TP 1 Notes
 
-(add your main observations/remarks about your experiments here, in a bulleted list, and remove this line. Some examples below)
+- In exercise 1 while doing the parallelogram we observed that we need to put the indices in the reverse order to make it double-sided.
 
-- In exercise 1 we observed X
-- In exercise 2 we had difficulties in Y
+### Screenshot of Exercice 2 Triangle Small (Figure 5):
 
-![Screenshot 1](screenshots/cg-t0xgxx-tp1-n.png)
+![Screenshot 1a Triangle Small](screenshots/cg-t05g05-tp1-1a.png)
+
+### Screenshot of Exercice 3 Triangle Big (Figure 6):
+
+![Screenshot 1b Triangle Big](screenshots/cg-t05g05-tp1-1b.png)
