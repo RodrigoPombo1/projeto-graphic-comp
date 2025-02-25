@@ -40,11 +40,6 @@ export class MyScene extends CGFscene {
     //Objects connected to MyInterface
     this.displayAxis = true;
     this.scaleFactor = 1;
-    this.displayDiamond = false;
-    this.displayTriangle = false;
-    this.displayParallelogram = false;
-    this.displayTriangleBig = false;
-    this.displayTriangleSmall = false;
     this.displayTangram = true;
   }
   initLights() {
@@ -107,11 +102,6 @@ export class MyScene extends CGFscene {
 
     // ---- BEGIN Primitive drawing section
 
-    if (this.displayDiamond) this.diamond.display();
-    if (this.displayTriangle) this.triangle.display();
-    if (this.displayParallelogram) this.parallelogram.display();
-    if (this.displayTriangleSmall) this.triangleSmall.display();
-    if (this.displayTriangleBig) this.triangleBig.display();
     if (this.displayTangram) this.tangram.display();
 
     // ---- END Primitive drawing section
