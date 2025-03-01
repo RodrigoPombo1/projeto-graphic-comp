@@ -12,6 +12,6 @@
 
 ![Screenshot 1 Tangram](screenshots/cg-t05g05-tp2-1.png)
 
-### Screenshot of Exercice 2.5 Tangram:
+### Screenshot of Exercice 2.5 Tangram with Unit Cube as base:
 
 ![Screenshot 2 Tangram with Unit Cube as base](screenshots/cg-t05-g05-tp2-2.png)
