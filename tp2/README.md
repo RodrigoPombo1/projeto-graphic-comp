@@ -8,7 +8,7 @@
 
 - In exercise 3.4 and 3.5 we noticed that when we made both figures go in the same coordinates, they would "collide" with each other and the graphics became "messed up". So we separated them by making it so that the Tangram also translates 0.1 up.
 
-- In exercise 4.3 we noticed that we still needed to offset the Tangram by 0.1 so it doesn't collide with the base and we also noticed that it was significantly faster applying the transformations than creating the a cube with all the vertices coordinates and indeces.
+- In exercise 4.3 we noticed that we still needed to offset the Tangram by 0.1 so it doesn't collide with the base and we also noticed that it was significantly faster applying the transformations to the square than creating the cube from scratch with all the vertices coordinates and indices.
 
 ### Screenshot of Exercice 2.3 Tangram:
 
