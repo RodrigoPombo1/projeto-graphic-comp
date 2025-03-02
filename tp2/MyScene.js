@@ -6,6 +6,8 @@ import { MyTriangleSmall } from "./MyTriangleSmall.js";
 import { MyTriangleBig } from "./MyTriangleBig.js";
 import { MyTangram } from "./MyTangram.js";
 import { MyUnitCube} from "./MyUnitCube.js";
+import { MyQuad } from "./MyQuad.js";
+import { MyUnitCubeQuad} from "./MyUnitCubeQuad.js"
 
 /**
  * MyScene
@@ -38,13 +40,18 @@ export class MyScene extends CGFscene {
     this.triangleBig = new MyTriangleBig(this);
     this.tangram = new MyTangram(this);
     this.unitCube = new MyUnitCube(this);
+    this.quad = new MyQuad(this);
+    this.unitCubeQuad = new MyUnitCubeQuad(this);
 
     //Objects connected to MyInterface
     this.displayAxis = true;
     this.scaleFactor = 1;
     this.displayTangram = false;
     this.displayUnitCube = false;
-    this.displayTangramAndUnitCube = true;
+    this.displayTangramAndUnitCube = false;
+    this.displayQuad = false;
+    this.displayUnitCubeQuad = false;
+    this.displayTangramAndUnitCubeQuad = true;
   }
   initLights() {
     this.lights[0].setPosition(15, 2, 5, 1);
@@ -128,6 +135,28 @@ export class MyScene extends CGFscene {
       this.popMatrix();
     }
 
+    if (this.displayQuad) this.quad.display();
+    if (this.displayUnitCubeQuad) this.unitCubeQuad.display();
+
+    if (this.displayTangramAndUnitCubeQuad) {
+      this.pushMatrix();
+      
+      this.scale(8, 1, 8);
+      this.translate(0.5, -0.5, 0.5);
+      
+      this.unitCubeQuad.display();
+      this.popMatrix();
+    
+      
+
+      this.pushMatrix();
+
+      this.rotate(-90 * (Math.PI/180), 1, 0, 0)
+      this.translate(4, -4, 0.01); // not 0 because otherwise it would collide with the base
+
+      this.tangram.display();
+      this.popMatrix();
+    }
 
     // ---- END Primitive drawing section
   }

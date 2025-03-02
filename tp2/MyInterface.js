@@ -22,7 +22,9 @@ export class MyInterface extends CGFinterface {
         this.gui.add(this.scene, "displayTangram").name("Tangram");
         this.gui.add(this.scene, "displayUnitCube").name("Unit Cube");
         this.gui.add(this.scene, "displayTangramAndUnitCube").name("TangramUnitCube");
-
+        this.gui.add(this.scene, "displayQuad").name("Quad");
+        this.gui.add(this.scene, "displayUnitCubeQuad").name("Unit Cube Quad");
+        this.gui.add(this.scene, "displayTangramAndUnitCubeQuad").name("TangramUnitQuad");
 
 
         //Checkbox element in GUI
