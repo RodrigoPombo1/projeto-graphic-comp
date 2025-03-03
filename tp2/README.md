@@ -16,8 +16,8 @@
 
 ### Screenshot of Exercice 3.5 Tangram with Unit Cube as base:
 
-![Screenshot 2 Tangram with Unit Cube as base](screenshots/cg-t05-g05-tp2-2.png)
+![Screenshot 2 Tangram with Unit Cube as base](screenshots/cg-t05g05-tp2-2.png)
 
 ### Screenshot of Exercice 4.3 Tangram with Unit Cube Quad as base:
 
-![Screenshot 3 Tangram with Unit Cube Quad as base](screenshots/cg-t05-g05-tp2-3.png)
+![Screenshot 3 Tangram with Unit Cube Quad as base](screenshots/cg-t05g05-tp2-3.png)
