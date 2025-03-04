@@ -8,7 +8,8 @@ import { MyParallelogram } from "./MyParallelogram.js";
 import { MyTriangleSmall } from "./MyTriangleSmall.js";
 import { MyTriangleBig } from "./MyTriangleBig.js";
 import { MyTangram } from "./MyTangram.js";
-import { MyUnitCube } from "./MyUnitCube.js"
+import { MyUnitCube } from "./MyUnitCube.js";
+import { MyPrism } from "./MyPrism.js";
 
 /**
 * MyScene
@@ -21,7 +22,7 @@ export class MyScene extends CGFscene {
     init(application) {
         super.init(application);
         this.initCameras();
-        this.initLights();
+        // this.initLights();
         this.initMaterials();
 
         //Background color
@@ -44,19 +45,20 @@ export class MyScene extends CGFscene {
         this.triangleBig = new MyTriangleBig(this);
         this.tangram = new MyTangram(this);
         this.unitCube = new MyUnitCube(this);
+        this.prism = new MyPrism(this, 8, 20);
         
-        this.objects = [this.plane, this.pyramid, this.cone, this.tangram, this.unitCube];
+        this.objects = [this.plane, this.pyramid, this.cone, this.tangram, this.unitCube, this.prism];
 
         // Labels and ID's for object selection on MyInterface
-        this.objectIDs = { 'Plane': 0 , 'Pyramid': 1, 'Cone': 2, "Tangram": 3, "Unit Cube": 4 };
+        this.objectIDs = { 'Plane': 0 , 'Pyramid': 1, 'Cone': 2, "Tangram": 3, "Unit Cube": 4, "Prism": 5 };
 
         //Other variables connected to MyInterface
-        this.selectedObject = 3;
+        this.selectedObject = 5;
         this.selectedMaterial = 4;
         this.displayAxis = true;
         this.displayNormals = false;
         this.objectComplexity = 0.5;
-        this.scaleFactor = 2.0;
+        this.scaleFactor = 1.0;
 
         this.globalAmbientLight = 0.3;
         return true;
@@ -192,7 +194,7 @@ export class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
-        // this.materials[this.selectedMaterial].apply();
+        this.materials[this.selectedMaterial].apply();
 
         this.pushMatrix();
         this.scale(this.scaleFactor,this.scaleFactor,this.scaleFactor);
@@ -201,8 +203,9 @@ export class MyScene extends CGFscene {
             this.objects[this.selectedObject].enableNormalViz();
         else
             this.objects[this.selectedObject].disableNormalViz();
-        
+
         this.objects[this.selectedObject].display();
+
         this.popMatrix();
         // ---- END Primitive drawing section
     }
