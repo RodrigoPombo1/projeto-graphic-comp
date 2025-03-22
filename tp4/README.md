@@ -10,3 +10,6 @@
 
 ![Screenshot 1](screenshots/cg-t05g05-tp4-1.png)
 
+### Screenshot tp4-2 (Exercice 7):
+
+![Screenshot 2](screenshots/cg-t05g05-tp4-2.png)
