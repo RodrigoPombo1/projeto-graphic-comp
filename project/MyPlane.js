@@ -1,4 +1,4 @@
-import {CGFobject} from '../lib/CGF.js';
+import {CGFobject, CGFappearance, CGFtexture} from '../lib/CGF.js';
 /**
 * MyPlane
 * @constructor
@@ -24,6 +24,7 @@ export class MyPlane extends CGFobject {
 		this.w = (this.maxT - this.minT) / this.nrDivs;
 		this.initBuffers();
 	}
+
 	initBuffers() {
 		// Generate vertices, normals, and texCoords
 		this.vertices = [];
