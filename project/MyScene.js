@@ -1,4 +1,5 @@
 import { CGFscene, CGFcamera, CGFaxis, CGFtexture, CGFappearance } from "../lib/CGF.js";
+import { MyPanorama } from "./MyPanorama.js";
 import { MyPlane } from "./MyPlane.js";
 import { MySphere } from "./MySphere.js";
 
@@ -33,7 +34,8 @@ export class MyScene extends CGFscene {
 		this.axis = new CGFaxis(this, 20, 1);
 		this.plane = new MyPlane(this, 64);
 		this.sphere = new MySphere(this, 32, 16);
-		
+		this.panorama = new MyPanorama(this);
+
 		//Initialize materials
 		this.plane_material = new CGFappearance(this);
 		this.plane_material.setAmbient(0.5, 0.5, 0.5, 1.0);
@@ -65,11 +67,11 @@ export class MyScene extends CGFscene {
 
 	initCameras() {
 		this.camera = new CGFcamera(
-			0.4,
+			0.9,
 			0.1,
 			1000,
 			// @ts-ignore
-			vec3.fromValues(200, 200, 200),
+			vec3.fromValues(10, 10, 10),
 			// @ts-ignore
 			vec3.fromValues(0, 0, 0)
 		);
@@ -132,13 +134,15 @@ export class MyScene extends CGFscene {
 		// this.plane.display();
 		// this.popMatrix();
 
-		this.pushMatrix();
-		// this.scale(400, 400, 400);
-		this.scale(10, 10, 10);
-		this.sphere_material.apply();
-		this.sphere.display();
-		this.popMatrix();
+		// this.pushMatrix();
+		// // this.scale(400, 400, 400);
+		// this.scale(20, 20, 20);
+		// this.sphere_material.apply();
+		// this.sphere.display();
+		// this.popMatrix();
 
 		// this.sphere.enableNormalViz();
+
+		this.panorama.display();
 	}
 }
