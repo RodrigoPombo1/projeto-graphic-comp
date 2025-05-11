@@ -2,6 +2,7 @@ import { CGFscene, CGFcamera, CGFaxis, CGFtexture, CGFappearance } from "../lib/
 import { MyPanorama } from "./MyPanorama.js";
 import { MyPlane } from "./MyPlane.js";
 import { MySphere } from "./MySphere.js";
+import { MyUnitCubeQuad } from "./MyUnitCubeQuad.js";
 
 /**
  * MyScene
@@ -125,14 +126,14 @@ export class MyScene extends CGFscene {
 
 		this.setDefaultAppearance();
 
-		// this.pushMatrix();
-		// this.scale(400, 1, 400);
-		// this.rotate(-Math.PI / 2, 1, 0, 0);
+		this.pushMatrix();
+		this.scale(400, 1, 400);
+		this.rotate(-Math.PI / 2, 1, 0, 0);
 
-		// // this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MAG_FILTER, this.gl.NEAREST);
-		// this.plane_material.apply();
-		// this.plane.display();
-		// this.popMatrix();
+		// this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MAG_FILTER, this.gl.NEAREST);
+		this.plane_material.apply();
+		this.plane.display();
+		this.popMatrix();
 
 		// this.pushMatrix();
 		// // this.scale(400, 400, 400);
