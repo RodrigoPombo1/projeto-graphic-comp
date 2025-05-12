@@ -34,7 +34,7 @@ export class MyScene extends CGFscene {
 		//Initialize scene objects
 		this.axis = new CGFaxis(this, 20, 1);
 		this.plane = new MyPlane(this, 64);
-		this.sphere = new MySphere(this, 32, 16);
+		this.sphere = new MySphere(this, 4, 2);
 		this.panorama = new MyPanorama(this);
 
 		//Initialize materials
@@ -50,6 +50,7 @@ export class MyScene extends CGFscene {
 		this.sphere_material.setAmbient(0.5, 0.5, 0.5, 1.0);
 		this.sphere_material.setDiffuse(0.5, 0.5, 0.5, 1.0);
 		this.sphere_material.setSpecular(0.5, 0.5, 0.5, 1.0);
+		this.sphere_material.setEmission(1.0, 1.0, 1.0, 1.0); // TODO REMOVE DEBUG ONLY
 		this.sphere_material.setShininess(10.0);
 		this.sphere_material.loadTexture("textures/earth_texture.jpg");
 		this.sphere_material.setTextureWrap("REPEAT", "REPEAT");
@@ -122,28 +123,28 @@ export class MyScene extends CGFscene {
 		this.applyViewMatrix();
 
 		// Draw axis
-		this.axis.display();
+		// this.axis.display();
 
 		this.setDefaultAppearance();
 
-		this.pushMatrix();
-		this.scale(400, 1, 400);
-		this.rotate(-Math.PI / 2, 1, 0, 0);
-
-		// this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MAG_FILTER, this.gl.NEAREST);
-		this.plane_material.apply();
-		this.plane.display();
-		this.popMatrix();
-
 		// this.pushMatrix();
-		// // this.scale(400, 400, 400);
-		// this.scale(20, 20, 20);
-		// this.sphere_material.apply();
-		// this.sphere.display();
+		// this.scale(400, 1, 400);
+		// this.rotate(-Math.PI / 2, 1, 0, 0);
+
+		// // this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MAG_FILTER, this.gl.NEAREST);
+		// this.plane_material.apply();
+		// this.plane.display();
 		// this.popMatrix();
+
+		this.pushMatrix();
+		// this.scale(400, 400, 400);
+		this.scale(20, 20, 20);
+		this.sphere_material.apply();
+		this.sphere.display();
+		this.popMatrix();
 
 		// this.sphere.enableNormalViz();
 
-		this.panorama.display();
+		//this.panorama.display();
 	}
 }

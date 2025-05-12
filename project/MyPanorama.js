@@ -26,7 +26,7 @@ export class MyPanorama extends CGFobject {
             this.sphere.indices[i + 2] = aux;
         }
 
-		this.sphere.indices = this.sphere.indices.slice(0, this.sphere.indices.length - (this.sphere.slices * 3));
+		// this.sphere.indices = this.sphere.indices.slice(0, this.sphere.indices.length - (this.sphere.slices * 3));
 
         // Reload the sphere with the new normals and indices
         this.sphere.initGLBuffers();
@@ -38,17 +38,27 @@ export class MyPanorama extends CGFobject {
 		this.panorama_material.setSpecular(0.0, 0.0, 0.0, 0.0);
 		this.panorama_material.setShininess(0.0);
 		this.panorama_material.setEmission(1.0, 1.0, 1.0, 1.0);
-		this.panorama_material.loadTexture("textures/panorama_texture.jpg");
+		this.panorama_material.loadTexture("textures/grass_texture.jpg");
 		this.panorama_material.setTextureWrap("REPEAT", "REPEAT");
+		//this.sphere.setLineMode();
 	}
 	
 	display() {
 		this.scene.pushMatrix();
-		this.scene.translate(this.scene.camera.position[0], this.scene.camera.position[1], this.scene.camera.position[2]);
+		// this.scene.translate(this.scene.camera.position[0], this.scene.camera.position[1], this.scene.camera.position[2]);
 		this.scene.scale(200, 200, 200);
 		this.panorama_material.apply();
 		this.sphere.display();
 		this.scene.popMatrix();
 	}
+
+	setFillMode() { 
+		this.primitiveType=this.scene.gl.TRIANGLE_STRIP;
+	}
+
+	setLineMode() 
+	{ 
+		this.primitiveType=this.scene.gl.LINES;
+	};
 }
 

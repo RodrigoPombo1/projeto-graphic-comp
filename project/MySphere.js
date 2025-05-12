@@ -28,7 +28,7 @@ export class MySphere extends CGFobject {
         this.texCoords.push(0.5, 0);
         
         // Stacks
-        for(let i = 0; i <= (this.stacks * 2); i++) { // 2 * stacks because 1 is only for a demi-sphere
+        for(let i = 0; i <= (this.stacks * 2) - 1; i++) { // 2 * stacks because 1 is only for a demi-sphere
             let current_y_vertex = Math.cos(stacks_angle);
             let vertical_texture_coord = i / (this.stacks * 2);
 
@@ -62,7 +62,7 @@ export class MySphere extends CGFobject {
             this.indices.push(0, j + 1, j + 2);
         }
 
-        for(let i = 0; i < this.stacks * 2; i++) { // 2 * stacks because 1 is only for a demi-sphere
+        for(let i = 0; i < (this.stacks * 2) - 1; i++) { // 2 * stacks because 1 is only for a demi-sphere
             for (let j = 0; j < this.slices; j++) {
                 let start = i * (this.slices + 1) + j + 1; // offset because of the north pole indice
                 let end = start + this.slices + 1;
@@ -74,16 +74,27 @@ export class MySphere extends CGFobject {
 
         // Indice for the south pole (the slice layer of the last stack)
         let last_vertex = this.vertices.length / 3 - 1;
-        let last_stack_start = (this.stacks - 1) * (this.slices + 1) + 1;
+        let last_stack_vertex_start = last_vertex - this.slices - 1;
         for (let j = 0; j < this.slices; j++) {
-            this.indices.push(last_vertex, last_stack_start + j, last_stack_start + j + 1);
+            this.indices.push(last_vertex, last_stack_vertex_start + j + 1, last_stack_vertex_start + j + 2);
         }
 
+        // this.indices = this.indices.slice(this.indices.length - (this.slices * 3), this.indices.length);
 
         //The defined indices (and corresponding vertices)
         //will be read in groups of three to draw triangles
         this.primitiveType = this.scene.gl.TRIANGLES;
+        this.setLineMode();
 
         this.initGLBuffers();
     }
+
+    setFillMode() { 
+		this.primitiveType=this.scene.gl.TRIANGLE_STRIP;
+	}
+
+	setLineMode() 
+	{ 
+		this.primitiveType=this.scene.gl.LINES;
+	};
 }
