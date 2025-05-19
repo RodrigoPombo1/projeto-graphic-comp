@@ -73,18 +73,17 @@ export class MySphere extends CGFobject {
         }
 
         // Indice for the south pole (the slice layer of the last stack)
-        let last_vertex = this.vertices.length / 3 - 1;
+        let last_vertex = (this.vertices.length / 3) - 1;
         let last_stack_vertex_start = last_vertex - this.slices - 1;
-        for (let j = 0; j < this.slices; j++) {
-            this.indices.push(last_vertex, last_stack_vertex_start + j + 1, last_stack_vertex_start + j + 2);
-        }
 
-        // this.indices = this.indices.slice(this.indices.length - (this.slices * 3), this.indices.length);
+        for (let j = 0; j < this.slices + 1; j++) {
+            this.indices.push(last_vertex, last_stack_vertex_start + j - 1, last_stack_vertex_start + j);
+        }
 
         //The defined indices (and corresponding vertices)
         //will be read in groups of three to draw triangles
         this.primitiveType = this.scene.gl.TRIANGLES;
-        this.setLineMode();
+        //this.setLineMode();
 
         this.initGLBuffers();
     }
