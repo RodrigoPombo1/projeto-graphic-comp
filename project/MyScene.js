@@ -11,10 +11,13 @@ import { MyUnitCubeQuad } from "./MyUnitCubeQuad.js";
 export class MyScene extends CGFscene {
 	constructor() {
 		super();
+		this.selectedTag = "tag_2"; // default value, will be overwritten by main.js
 	}
 
 	init(application){
 		super.init(application);
+
+		console.log("Current tag:", this.selectedTag);
 
 		this.initCameras();
 		this.initLights();
@@ -33,28 +36,37 @@ export class MyScene extends CGFscene {
 
 		//Initialize scene objects
 		this.axis = new CGFaxis(this, 20, 1);
-		this.plane = new MyPlane(this, 64);
-		this.sphere = new MySphere(this, 32, 16);
-		this.panorama = new MyPanorama(this);
+		if (this.selectedTag === "tag_1") {
+			this.sphere = new MySphere(this, 32, 16);
+		}
+		
+		if (this.selectedTag === "tag_2") {
+			this.plane = new MyPlane(this, 64);
+			this.panorama = new MyPanorama(this);
+		}
 
 		//Initialize materials
-		this.plane_material = new CGFappearance(this);
-		this.plane_material.setAmbient(0.5, 0.5, 0.5, 1.0);
-		this.plane_material.setDiffuse(0.5, 0.5, 0.5, 1.0);
-		this.plane_material.setSpecular(0.5, 0.5, 0.5, 1.0);
-		this.plane_material.setShininess(10.0);
-		this.plane_material.loadTexture("textures/grass_texture.jpg");
-		this.plane_material.setTextureWrap("REPEAT", "REPEAT");
+		if (this.selectedTag === "tag_1") {
+			this.sphere_material = new CGFappearance(this);
+			this.sphere_material.setAmbient(0.5, 0.5, 0.5, 1.0);
+			this.sphere_material.setDiffuse(0.5, 0.5, 0.5, 1.0);
+			this.sphere_material.setSpecular(0.5, 0.5, 0.5, 1.0);
+			this.sphere_material.setEmission(1.0, 1.0, 1.0, 1.0); // TODO REMOVE DEBUG ONLY
+			this.sphere_material.setShininess(10.0);
+			this.sphere_material.loadTexture("textures/earth_texture.jpg");
+			this.sphere_material.setTextureWrap("REPEAT", "REPEAT");
+		}
 		
-		this.sphere_material = new CGFappearance(this);
-		this.sphere_material.setAmbient(0.5, 0.5, 0.5, 1.0);
-		this.sphere_material.setDiffuse(0.5, 0.5, 0.5, 1.0);
-		this.sphere_material.setSpecular(0.5, 0.5, 0.5, 1.0);
-		this.sphere_material.setEmission(1.0, 1.0, 1.0, 1.0); // TODO REMOVE DEBUG ONLY
-		this.sphere_material.setShininess(10.0);
-		this.sphere_material.loadTexture("textures/earth_texture.jpg");
-		this.sphere_material.setTextureWrap("REPEAT", "REPEAT");
-
+		if (this.selectedTag === "tag_2") {
+			this.plane_material = new CGFappearance(this);
+			this.plane_material.setAmbient(0.5, 0.5, 0.5, 1.0);
+			this.plane_material.setDiffuse(0.5, 0.5, 0.5, 1.0);
+			this.plane_material.setSpecular(0.5, 0.5, 0.5, 1.0);
+			this.plane_material.setShininess(10.0);
+			this.plane_material.loadTexture("textures/grass_texture.jpg");
+			this.plane_material.setTextureWrap("REPEAT", "REPEAT");
+		}
+		
 		//Objects connected to MyInterface
 		
 		return true;
@@ -123,28 +135,34 @@ export class MyScene extends CGFscene {
 		this.applyViewMatrix();
 
 		// Draw axis
-		// this.axis.display();
+		this.axis.display();
 
 		this.setDefaultAppearance();
 
-		// this.pushMatrix();
-		// this.scale(400, 1, 400);
-		// this.rotate(-Math.PI / 2, 1, 0, 0);
+		
+		if (this.selectedTag === "tag_2") {
+			this.pushMatrix();
+			this.scale(400, 1, 400);
+			this.rotate(-Math.PI / 2, 1, 0, 0);
+			// this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MAG_FILTER, this.gl.NEAREST);
+			this.plane_material.apply();
+			this.plane.display();
+			this.popMatrix();
+		}
 
-		// // this.gl.texParameteri(this.gl.TEXTURE_2D, this.gl.TEXTURE_MAG_FILTER, this.gl.NEAREST);
-		// this.plane_material.apply();
-		// this.plane.display();
-		// this.popMatrix();
-
-		this.pushMatrix();
 		// this.scale(400, 400, 400);
-		this.scale(20, 20, 20);
-		this.sphere_material.apply();
-		this.sphere.display();
-		this.popMatrix();
 
-		// this.sphere.enableNormalViz();
+		if (this.selectedTag === "tag_1") {	
+			this.pushMatrix();
+			this.scale(20, 20, 20);
+			this.sphere_material.apply();
+			this.sphere.display();
+			this.popMatrix();
+			// this.sphere.enableNormalViz();
+		}
 
-		//this.panorama.display();
+		if (this.selectedTag === "tag_2") {
+			this.panorama.display();
+		}
 	}
 }

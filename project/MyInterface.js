@@ -5,8 +5,10 @@ import { CGFinterface, dat } from '../lib/CGF.js';
 * @constructor
 */
 export class MyInterface extends CGFinterface {
-    constructor() {
+    constructor(selectedTag = 'tag_1') {
         super();
+        this.tags = ['tag_1', 'tag_2', 'tag_3', 'tag_4', 'tag_5', 'tag_6', 'tag_7', 'tag_8'];
+        this.selectedTag = selectedTag;
     }
 
     init(application) {
@@ -18,6 +20,11 @@ export class MyInterface extends CGFinterface {
         this.gui = new dat.GUI();
 
         this.initKeys();
+
+        // @ts-ignore
+        this.gui.add(this, 'selectedTag', this.tags)
+            .name('Tag Selected')
+            .onChange(this.onTagChanged.bind(this));
 
         return true;
     }
@@ -48,4 +55,14 @@ export class MyInterface extends CGFinterface {
         return this.activeKeys[keyCode] || false;
     }
 
+
+    onTagChanged(value) {
+        // call the global reloadScene function
+        // @ts-ignore
+        if (typeof window.reloadScene === 'function') {
+            // @ts-ignore
+            window.reloadScene(value);
+        }
+        console.log(`Tag changed to: ${value}`);
+    }
 }

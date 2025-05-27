@@ -19,15 +19,13 @@ export class MyPanorama extends CGFobject {
         }
 
         // Change order of the indices
-        for (let i = 0; i < this.sphere.indices.length - (this.sphere.slices * 3); i += 3) {
+        for (let i = 0; i < this.sphere.indices.length; i += 3) {
             // Swap the second and third indices
             let aux = this.sphere.indices[i + 1];
             this.sphere.indices[i + 1] = this.sphere.indices[i + 2];
             this.sphere.indices[i + 2] = aux;
         }
-
-		// this.sphere.indices = this.sphere.indices.slice(0, this.sphere.indices.length - (this.sphere.slices * 3));
-
+		
         // Reload the sphere with the new normals and indices
         this.sphere.initGLBuffers();
 		///////////
@@ -38,7 +36,7 @@ export class MyPanorama extends CGFobject {
 		this.panorama_material.setSpecular(0.0, 0.0, 0.0, 0.0);
 		this.panorama_material.setShininess(0.0);
 		this.panorama_material.setEmission(1.0, 1.0, 1.0, 1.0);
-		this.panorama_material.loadTexture("textures/grass_texture.jpg");
+		this.panorama_material.loadTexture("textures/panorama_texture.jpg");
 		this.panorama_material.setTextureWrap("REPEAT", "REPEAT");
 		//this.sphere.setLineMode();
 	}
