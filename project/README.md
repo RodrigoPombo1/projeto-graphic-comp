@@ -8,3 +8,4 @@
 
 ![Screenshot 1](screenshots/project-t05g05-1.png)
 
+![Screenshot 2](screenshots/project-t05g05-2.png)
