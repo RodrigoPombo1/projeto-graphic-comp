@@ -10,7 +10,7 @@ export class MyBuilding extends CGFobject {
      * @param {number} total_width - Total width of the building (set of the three modules)
      * @param {number} number_floors_lateral_modules - Number of this.number_floors_lateral_modules of side modules
      * @param {number} number_windows_per_floor - Number of windows per floor
-     * @param {CGFappearance} window_material - Window type (texture)
+     * @param {CGFappearance} window_material - Window material
      * @param {Array} color_building - Color of the building
      */
     constructor(scene, total_width, number_floors_lateral_modules, number_windows_per_floor, window_material, color_building) {

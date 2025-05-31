@@ -3,6 +3,7 @@ import { MyPanorama } from "./MyPanorama.js";
 import { MyPlane } from "./MyPlane.js";
 import { MySphere } from "./MySphere.js";
 import { MyBuilding } from "./MyBuilding.js";
+import { MyForest } from "./MyForest.js";
 
 /**
  * MyScene
@@ -11,7 +12,7 @@ import { MyBuilding } from "./MyBuilding.js";
 export class MyScene extends CGFscene {
 	constructor() {
 		super();
-		this.selectedTag = "tag_3"; // default value, will be overwritten by main.js
+		this.selectedTag = "tag_4"; // default value, will be overwritten by main.js
 	}
 
 	init(application){
@@ -40,7 +41,7 @@ export class MyScene extends CGFscene {
 			this.sphere = new MySphere(this, 32, 16);
 		}
 		
-		if (this.selectedTag === "tag_2" || this.selectedTag === "tag_3") {
+		if (this.selectedTag === "tag_2" || this.selectedTag === "tag_3" || this.selectedTag === "tag_4") {
 			this.plane = new MyPlane(this, 64);
 			this.panorama = new MyPanorama(this);
 		}
@@ -57,7 +58,7 @@ export class MyScene extends CGFscene {
 			this.sphere_material.setTextureWrap("REPEAT", "REPEAT");
 		}
 		
-		if (this.selectedTag === "tag_2" || this.selectedTag === "tag_3") {
+		if (this.selectedTag === "tag_2" || this.selectedTag === "tag_3" || this.selectedTag === "tag_4") {
 			this.plane_material = new CGFappearance(this);
 			this.plane_material.setAmbient(0.5, 0.5, 0.5, 1.0);
 			this.plane_material.setDiffuse(0.5, 0.5, 0.5, 1.0);
@@ -67,7 +68,7 @@ export class MyScene extends CGFscene {
 			this.plane_material.setTextureWrap("REPEAT", "REPEAT");
 		}
 
-		if (this.selectedTag === "tag_3") {
+		if (this.selectedTag === "tag_3" || this.selectedTag === "tag_4") {
 			let building_color = [1.0, 1.0, 1.0];
 			this.window_material = new CGFappearance(this);
 			this.window_material.setAmbient(building_color[0], building_color[1], building_color[2], 1.0);
@@ -80,6 +81,12 @@ export class MyScene extends CGFscene {
 			this.building = new MyBuilding(this, 5, 4, 4, this.window_material, [1.0, 1.0, 1.0]);
 		}
 		
+		if (this.selectedTag === "tag_4") {
+			this.trunk_texture = new CGFtexture(this, "textures/wood_texture.jpg");
+			this.leaves_texture = new CGFtexture(this, "textures/leaves_texture.jpg");
+			this.forest = new MyForest(this, 5, 4, 20, 20, this.trunk_texture, this.leaves_texture);
+		}
+
 		//Objects connected to MyInterface
 		
 		return true;
@@ -165,7 +172,7 @@ export class MyScene extends CGFscene {
 			// this.sphere.enableNormalViz();
 		}
 
-		if (this.selectedTag === "tag_2" || this.selectedTag === "tag_3") {
+		if (this.selectedTag === "tag_2" || this.selectedTag === "tag_3" || this.selectedTag === "tag_4") {
 			this.pushMatrix();
 			this.scale(400, 1, 400);
 			this.rotate(-Math.PI / 2, 1, 0, 0);
@@ -176,11 +183,18 @@ export class MyScene extends CGFscene {
 			this.panorama.display();
 		}
 
-		if (this.selectedTag === "tag_3") {
+		if (this.selectedTag === "tag_3" || this.selectedTag === "tag_4") {
 			this.pushMatrix();
 			this.scale(5, 5, 5);
 			this.translate(10, 0, -10);
 			this.building.display();
+			this.popMatrix();
+		}
+
+		if (this.selectedTag === "tag_3" || this.selectedTag === "tag_4") {
+			this.pushMatrix();
+			this.translate(-10, 0, 10); // position the forest as needed
+			this.forest.display();
 			this.popMatrix();
 		}
 	}
