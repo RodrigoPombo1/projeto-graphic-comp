@@ -1,5 +1,6 @@
 import { CGFobject } from '../lib/CGF.js';
 import { MyTree } from './MyTree.js';
+import { MyFire } from './MyFire.js';
 
 export class MyForest extends CGFobject {
     /**
@@ -14,6 +15,7 @@ export class MyForest extends CGFobject {
     constructor(scene, rows, columns, area_width, area_depth, trunk_texture, leaves_texture) {
         super(scene);
         this.trees = [];
+        this.fires = [];
         for (let current_row = 0; current_row < rows; current_row++) {
             for (let current_column = 0; current_column < columns; current_column++) {
                 // random tree parameters
@@ -30,6 +32,11 @@ export class MyForest extends CGFobject {
 
                 let tree = new MyTree(scene, tilt_degrees, tilt_axis, trunk_radius, tree_height, crownColor, trunk_texture, leaves_texture);
                 this.trees.push({ tree, x: x_position, z: z_position });
+                if (scene.selectedTag === "tag_6" || scene.selectedTag === "tag_7" || scene.selectedTag === "tag_8") {
+                    if (Math.random() < 0.8) {
+                        this.fires.push({ x_position, z_position, tree_height, fire: new MyFire(this.scene, 2, 0.4) });
+                    }
+                }
             }
         }
     }
@@ -42,6 +49,13 @@ export class MyForest extends CGFobject {
             this.scene.pushMatrix();
             this.scene.translate(x_tree_position, 0, z_tree_position);
             tree_object.display();
+            this.scene.popMatrix();
+        }
+
+        for (let { x_position, z_position, tree_height, fire } of this.fires) {
+            this.scene.pushMatrix();
+            this.scene.translate(x_position, tree_height / 3 + fire.offsetY, z_position);
+            fire.display();
             this.scene.popMatrix();
         }
     }

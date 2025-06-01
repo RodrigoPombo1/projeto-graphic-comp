@@ -26,6 +26,12 @@ export class MyInterface extends CGFinterface {
             .name('Tag Selected')
             .onChange(this.onTagChanged.bind(this));
 
+
+        if (this.scene.selectedTag === "tag_5" || this.scene.selectedTag === "tag_6" || this.scene.selectedTag === "tag_7" || this.scene.selectedTag === "tag_8") {
+            // @ts-ignore
+            this.gui.add(this.scene.heli, 'speedFactor', 0.1, 3).name('Speed Factor');
+        }
+
         return true;
     }
 
