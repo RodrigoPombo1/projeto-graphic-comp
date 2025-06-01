@@ -177,7 +177,7 @@ export class MyScene extends CGFscene {
 			0.1,
 			1000,
 			// @ts-ignore
-			vec3.fromValues(30, 30, 30), // eye position
+			vec3.fromValues(70, 60, 50), // eye position
 			// @ts-ignore
 			vec3.fromValues(10, 0, -10) // look at heliport
 			);
